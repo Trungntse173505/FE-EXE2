@@ -6,7 +6,7 @@ import { Sparkles, Utensils } from "lucide-react";
 
 export default function AISection() {
   return (
-    <section className="py-24 bg-gray-900 text-white">
+    <section id="ai" className="py-24 bg-gray-900 text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* AI Food Analysis */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">

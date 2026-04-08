@@ -113,7 +113,7 @@ export default function MembershipPaymentPage() {
                     <span className="bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded">
                       VIP
                     </span>
-                    <h1 className="text-2xl font-bold mt-1">Member VIP</h1>
+                    <h1 className="text-2xl font-bold mt-1">Hội viên VIP</h1>
                   </div>
                 </div>
 
@@ -173,7 +173,7 @@ export default function MembershipPaymentPage() {
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between py-3 border-b border-gray-100">
                   <span className="text-gray-600">Gói</span>
-                  <span className="font-medium">Member VIP</span>
+                  <span className="font-medium">Hội viên VIP</span>
                 </div>
                 <div className="flex justify-between py-3 border-b border-gray-100">
                   <span className="text-gray-600">Thời hạn</span>

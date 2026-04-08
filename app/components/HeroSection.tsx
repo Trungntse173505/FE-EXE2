@@ -62,7 +62,7 @@ export default function HeroSection() {
           <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center">
             <Image
               src="/snapedit_1774632388843-removebg-preview 1.png"
-              alt="Logo"
+              alt="Logo EasyStretch"
               width={40}
               height={40}
               className="object-contain"
@@ -86,7 +86,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          Your All-in-One EasyStretch App
+          Ứng dụng EasyStretch tất cả trong một
         </motion.p>
 
         {/* Subtitle */}
@@ -126,7 +126,7 @@ export default function HeroSection() {
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1526-.5676.4144.4144 0 00-.5676.1526l-2.022 3.5016C16.5902 8.2435 15.3756 7.8672 14 7.8672s-2.5902.3763-3.7368 1.101l-2.022-3.5016a.4144.4144 0 00-.5676-.1526.416.416 0 00-.1526.5676l1.9973 3.4592C5.2798 10.2121 3 12.8354 3 15.9965h18c0-3.1611-2.2798-5.7844-5.1185-6.6751"/>
             </svg>
-            Download for Android
+            Tải xuống cho Android
           </motion.a>
         </motion.div>
 
@@ -170,7 +170,7 @@ export default function HeroSection() {
             <div className="absolute inset-[12px] z-0 overflow-hidden rounded-[34px] bg-black">
               <Image
                 src="/c2f5f1746f23ee7db732.jpg"
-                alt="Healthy Food"
+                alt="Thực phẩm lành mạnh"
                 fill
                 className="object-cover"
                 priority

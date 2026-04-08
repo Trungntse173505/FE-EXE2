@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const footerLinks = {
   product: [
-    { name: "Download", href: "#download" },
+    { name: "Tải xuống", href: "#download" },
     { name: "Tính năng", href: "#features" },
     { name: "Cách hoạt động", href: "#how-it-works" },
     { name: "AI", href: "#ai" },
@@ -18,8 +18,8 @@ const footerLinks = {
     { name: "TikTok", href: "https://www.tiktok.com/@easystretchhiha" },
   ],
   legal: [
-    { name: "Terms & Conditions", href: "#" },
-    { name: "Privacy Policy", href: "#" }
+    { name: "Điều khoản sử dụng", href: "/terms" },
+    { name: "Chính sách bảo mật", href: "#" }
   ]
 };
 
@@ -50,7 +50,7 @@ export default function Footer() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Download for Android
+              Tải xuống cho Android
               <ArrowUpRight className="w-4 h-4" />
             </motion.a>
           </motion.div>
@@ -79,7 +79,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="font-semibold mb-4">Links</h4>
+            <h4 className="font-semibold mb-4">Liên kết</h4>
             <ul className="space-y-2">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
@@ -95,7 +95,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Connect</h4>
+            <h4 className="font-semibold mb-4">Kết nối</h4>
             <ul className="space-y-2">
               {footerLinks.connect.map((link) => (
                 <li key={link.name}>
@@ -111,15 +111,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Build Your</h4>
-            <p className="text-green-400 font-semibold">better Version</p>
+            <h4 className="font-semibold mb-4">Xây dựng</h4>
+            <p className="text-green-400 font-semibold">phiên bản tốt hơn</p>
           </div>
         </div>
 
         {/* Bottom */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
-            All rights reserved
+            Bản quyền thuộc về EasyStretch
           </p>
           <div className="flex items-center gap-6">
             {footerLinks.legal.map((link) => (

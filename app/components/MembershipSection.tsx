@@ -10,7 +10,7 @@ const VIP_COURSE_ID = "960e3154-51cd-487a-a8d6-570bb8aa1b27";
 
 const defaultPlans = [
   {
-    name: "Free",
+    name: "Miễn phí",
     priceVnd: "0Đ",
     description: "Dành cho người mới bắt đầu",
     buttonText: "Dùng ngay",
@@ -29,14 +29,14 @@ const defaultPlans = [
     badge: null
   },
   {
-    name: "Member VIP",
+    name: "Hội viên VIP",
     priceVnd: "99.000Đ",
     description: "Dành cho người muốn trải nghiệm đầy đủ",
     buttonText: "Dùng ngay",
     buttonStyle: "bg-white text-gray-900 hover:bg-gray-100",
     popular: true,
     features: [
-      "Mọi tính năng Free",
+      "Mọi tính năng Miễn phí",
       "Mở khóa 100% video bài tập cao cấp",
       "Video thiết kế chuyên sâu",
       "Tương tác & tư vấn cùng chuyên gia dinh dưỡng AI",
@@ -175,7 +175,7 @@ export default function MembershipSection() {
               {/* Features */}
               <div>
                 <p className={`text-sm font-semibold mb-4 ${plan.textColor}`}>
-                  Bao gồm
+                  Tính năng
                 </p>
                 <ul className="space-y-3">
                   {plan.features.map((feature) => (

@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     question: "Có thể xem khóa học miễn phí không?",
-    answer: "Có! Gói Free cho phép bạn đăng ký bài tập, xem hướng dẫn cơ bản và theo dõi lịch sử tập luyện. Nếu muốn truy cập 100% video bài tập cao cấp, tương tác AI chuyên gia và quản lý dinh dưỡng toàn diện, bạn có thể nâng cấp lên gói Member VIP chỉ với 99.000đ/tháng."
+    answer: "Có! Gói Miễn phí cho phép bạn đăng ký bài tập, xem hướng dẫn cơ bản và theo dõi lịch sử tập luyện. Nếu muốn truy cập 100% video bài tập cao cấp, tương tác AI chuyên gia và quản lý dinh dưỡng toàn diện, bạn có thể nâng cấp lên gói Hội viên VIP chỉ với 99.000đ/tháng."
   },
   {
     question: "Thanh toán gói VIP như thế nào?",
