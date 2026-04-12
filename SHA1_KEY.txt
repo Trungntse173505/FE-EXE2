@@ -1,0 +1,53 @@
+===============================================
+SHA-1 FINGERPRINT CHO GOOGLE OAUTH
+===============================================
+
+## DEV LOCAL (Debug):
+
+### macOS/Linux:
+```bash
+keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore -storepass android -keypass android
+```
+
+### Windows:
+```cmd
+keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore -storepass android -keypass android
+```
+
+### Kết quả sẽ có dạng:
+```
+SHA1: XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX
+```
+
+## RELEASE (Production):
+
+### Nếu dùng EAS Build:
+```bash
+eas credentials
+```
+Chọn Android → Production → copy SHA-1
+
+### Nếu upload lên Play Store:
+Lấy SHA-1 từ:
+- Google Play Console → App Signing → App signing key certificate
+
+===============================================
+CẤU HÌNH GOOGLE CLOUD CONSOLE
+===============================================
+
+1. Truy cập: https://console.cloud.google.com/apis/credentials
+2. Chọn OAuth 2.0 Client ID: 505181922642-aq3aaeddfd64e3hmna9dpl2jaoe1u5p1
+3. Tab "Android" → Thêm SHA-1 fingerprint
+4. Thêm cả debug và release SHA-1
+
+===============================================
+LƯU Ý QUAN TRỌNG
+===============================================
+
+- SHA-1 CHỈ CẦN CHO ANDROID APP (React Native/Expo)
+- Vercel WEB **KHÔNG CẦN** SHA-1
+- Web dùng Web Client ID khác với Android
+
+Cấu hình Supabase Auth:
+- Site URL: https://easystretch.vercel.app (hoặc domain của bạn)
+- Redirect URLs: https://easystretch.vercel.app/auth/callback

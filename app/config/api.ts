@@ -8,5 +8,6 @@ export const ENDPOINTS = {
     signin: "/users/signin",
     signout: "/users/signout",
     otp: "/users/otp",
+    me: "/users/me",
   },
 };

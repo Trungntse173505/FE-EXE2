@@ -100,6 +100,15 @@ class ApiClient {
       body: JSON.stringify(data),
     });
   }
+
+  // Get user info with auth token
+  async getInfo(): Promise<ApiResponse> {
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    return this.request(ENDPOINTS.auth.me || "/users/me", {
+      method: "GET",
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
+  }
 }
 
 export const apiClient = new ApiClient();
