@@ -26,14 +26,13 @@ export const useGoogleLogin = () => {
       logGoogleAuth.signInSuccess();
 
       // Gọi Google OAuth qua Supabase
-      // Dùng window.location.origin cho dev, nhưng khi deploy dùng domain thật
-      const origin = typeof window !== "undefined" 
-        ? (window.location.hostname === "localhost" ? "http://localhost:3000" : "https://www.easystretch.click")
-        : "https://www.easystretch.click";
+      // Ưu tiên env variable, fallback về window.location.origin
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 
+        (typeof window !== "undefined" ? window.location.origin : "");
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${origin}/auth/callback`,
+          redirectTo: `${siteUrl}/auth/callback`,
           queryParams: {
             access_type: "offline",
             prompt: "consent",
