@@ -26,7 +26,10 @@ export const useGoogleLogin = () => {
       logGoogleAuth.signInSuccess();
 
       // Gọi Google OAuth qua Supabase
-      const origin = typeof window !== "undefined" ? window.location.origin : "";
+      // Dùng window.location.origin cho dev, nhưng khi deploy dùng domain thật
+      const origin = typeof window !== "undefined" 
+        ? (window.location.hostname === "localhost" ? "http://localhost:3000" : "https://www.easystretch.click")
+        : "https://www.easystretch.click";
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
