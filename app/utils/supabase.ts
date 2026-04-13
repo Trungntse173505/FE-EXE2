@@ -1,28 +1,13 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Lazy initialization để đảm bảo env variables sẵn sàng
-let supabaseInstance: ReturnType<typeof createClient> | null = null;
+// Hardcode Supabase credentials
+const supabaseUrl = "https://jwxgmuzrufclvreuvple.supabase.co";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3eGdtdXpydWZjbHZyZXV2cGxlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxMTU0NzksImV4cCI6MjA4NTY5MTQ3OX0.j547TeTjyjrjB5Ls2rLV7tvgC_PJJqgk74wHwUj7Xx0";
 
-export const getSupabaseClient = () => {
-  if (supabaseInstance) return supabaseInstance;
-  
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Thiếu NEXT_PUBLIC_SUPABASE_URL hoặc NEXT_PUBLIC_SUPABASE_ANON_KEY");
-  }
-  
-  supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
-    auth: {
-      autoRefreshToken: true,
-      persistSession: true,
-      detectSessionInUrl: true, // Tự động parse access_token từ URL hash
-    },
-  });
-  
-  return supabaseInstance;
-};
-
-// Export singleton instance
-export const supabase = getSupabaseClient();
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true,
+  },
+});
