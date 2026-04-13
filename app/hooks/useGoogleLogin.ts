@@ -26,11 +26,8 @@ export const useGoogleLogin = () => {
       logGoogleAuth.signInSuccess();
 
       // Gọi Google OAuth qua Supabase
-      // BẮT BUỘC phải có NEXT_PUBLIC_SITE_URL
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-      if (!siteUrl) {
-        throw new Error("Thiếu NEXT_PUBLIC_SITE_URL");
-      }
+      // Hardcode URL production
+      const siteUrl = "https://www.easystretch.click";
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
