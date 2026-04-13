@@ -62,7 +62,7 @@ export default function MembershipPaymentPage() {
       {
         orderCode, // Thêm orderCode số
         amount: VIP_TEST_PRICE,
-        description: "Nâng cấp Member VIP",
+        description: "Nang cap VIP", // PayOS giới hạn 25 ký tự
         items: [
           {
             name: "VIP Membership",

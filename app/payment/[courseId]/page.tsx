@@ -80,7 +80,7 @@ export default function PaymentPage() {
       {
         orderCode, // Thêm orderCode số
         amount: paymentPrice,
-        description: `Mua khóa học: ${course.title}`,
+        description: course.title.slice(0, 25), // PayOS giới hạn 25 ký tự
         items: [
           {
             name: course.title, // Dùng tên khóa học thay vì ID
