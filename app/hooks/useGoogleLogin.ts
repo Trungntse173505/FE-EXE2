@@ -60,6 +60,10 @@ export const useGoogleLogin = () => {
     setIsGoogleLoading(true);
 
     try {
+      // Đợi Supabase xử lý URL hash (access_token từ Google OAuth)
+      // Supabase tự động parse hash khi khởi tạo, nhưng cần đợi 1 chút
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
       // Lấy session từ Supabase
       const { data: { session }, error: sessionError } = await supabase.auth.getSession();
 
