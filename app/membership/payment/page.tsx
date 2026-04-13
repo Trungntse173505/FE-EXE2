@@ -55,13 +55,17 @@ export default function MembershipPaymentPage() {
     const returnUrl = `${window.location.origin}/`;
     const cancelUrl = `${window.location.origin}/membership/payment`;
 
+    // Tạo orderCode là số (timestamp) - PayOS cần số nguyên
+    const orderCode = Date.now();
+
     await createPaymentLink(
       {
+        orderCode, // Thêm orderCode số
         amount: VIP_TEST_PRICE,
-        description: "Nang cap Member VIP",
+        description: "Nâng cấp Member VIP",
         items: [
           {
-            name: VIP_COURSE_ID,
+            name: "VIP Membership",
             quantity: 1,
             price: VIP_TEST_PRICE,
           },

@@ -8,6 +8,7 @@ export interface PaymentItem {
 }
 
 export interface CreatePaymentRequest {
+  orderCode: number; // PayOS cần số
   amount: number;
   description: string;
   items: PaymentItem[];

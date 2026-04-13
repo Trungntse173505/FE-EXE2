@@ -73,13 +73,17 @@ export default function PaymentPage() {
     const returnUrl = `${window.location.origin}/courses`;
     const cancelUrl = `${window.location.origin}/courses`;
 
+    // Tạo orderCode là số (timestamp) - PayOS cần số nguyên
+    const orderCode = Date.now();
+    
     await createPaymentLink(
       {
+        orderCode, // Thêm orderCode số
         amount: paymentPrice,
         description: `Mua khóa học: ${course.title}`,
         items: [
           {
-            name: course.id,
+            name: course.title, // Dùng tên khóa học thay vì ID
             quantity: 1,
             price: paymentPrice,
           },
