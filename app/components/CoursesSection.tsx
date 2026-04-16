@@ -57,12 +57,15 @@ export default function CoursesSection() {
   const { boughtCourses } = useBoughtCourses(token);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Debug log
-  console.log("Token:", token);
-  console.log("Bought courses:", boughtCourses);
-  console.log("All courses:", courses);
+  const HIDDEN_COURSE_ID = "49414f0c-ea91-4ded-bd2d-3536c2ea82e5";
 
-  const activeCourses = courses.filter((course) => course.is_active);
+  // Chỉ hiện khóa học is_active, không phải ID bị ẩn, và level là "recover"
+  const activeCourses = courses.filter(
+    (course) =>
+      course.is_active &&
+      course.id !== HIDDEN_COURSE_ID &&
+      course.level?.toLowerCase() === "recover"
+  );
   const totalPages = Math.ceil(activeCourses.length / ITEMS_PER_PAGE);
   
   const paginatedCourses = activeCourses.slice(
@@ -84,7 +87,7 @@ export default function CoursesSection() {
               Khóa học của chúng tôi
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Đa dạng khóa học phù hợp với mọi trình độ
+              Các khóa học phục hồi chuyên sâu
             </p>
           </div>
           <div className="flex justify-center items-center py-12">
@@ -132,7 +135,7 @@ export default function CoursesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Đa dạng khóa học phù hợp với mọi trình độ, từ cơ bản đến nâng cao
+            Các khóa học phục hồi chuyên sâu, giúp bạn lấy lại phong độ nhanh chóng
           </motion.p>
         </div>
 

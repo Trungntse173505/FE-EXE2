@@ -6,7 +6,7 @@ import { useAuthContext } from "@/app/context/AuthContext";
 import { useUserProfile } from "@/app/hooks/useUserProfile";
 import Link from "next/link";
 
-const VIP_COURSE_ID = "960e3154-51cd-487a-a8d6-570bb8aa1b27";
+const VIP_COURSE_ID = "49414f0c-ea91-4ded-bd2d-3536c2ea82e5";
 
 const defaultPlans = [
   {
