@@ -1,13 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuthContext } from "@/app/context/AuthContext";
-import { ArrowUpRight, User } from "lucide-react";
+import { ArrowUpRight, User, X } from "lucide-react";
+import { useState } from "react";
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useAuthContext();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <motion.header
       className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md"
@@ -92,13 +94,111 @@ export default function Header() {
           )}
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <button 
+            className="md:hidden p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-t border-gray-100"
+          >
+            <div className="px-4 py-4 space-y-3">
+              <a 
+                href="#download" 
+                className="block py-2 text-gray-600 hover:text-gray-900"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Tải xuống
+              </a>
+              <a 
+                href="#features" 
+                className="block py-2 text-gray-600 hover:text-gray-900"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Tính năng
+              </a>
+              <a 
+                href="#how-it-works" 
+                className="block py-2 text-gray-600 hover:text-gray-900"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Cách hoạt động
+              </a>
+              <a 
+                href="#ai" 
+                className="block py-2 text-gray-600 hover:text-gray-900"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                AI
+              </a>
+              <a 
+                href="#pricing" 
+                className="block py-2 text-gray-600 hover:text-gray-900"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Gói thành viên
+              </a>
+              
+              <div className="border-t border-gray-100 pt-3">
+                {isAuthenticated ? (
+                  <>
+                    <div className="flex items-center gap-2 py-2">
+                      <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
+                        <User className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700">
+                        {user?.full_name || user?.email || "Người dùng"}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="block w-full text-left py-2 text-red-600"
+                    >
+                      Đăng xuất
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link 
+                      href="/login" 
+                      className="block py-2 text-gray-600"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Đăng nhập
+                    </Link>
+                    <Link 
+                      href="/register" 
+                      className="block py-2 text-gray-900 font-medium"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Đăng ký
+                    </Link>
+                  </>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
