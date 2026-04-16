@@ -36,7 +36,6 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-green-400 font-medium mb-2">200k+ lượt tải trên CH Play</p>
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
               #1 ứng dụng giãn cơ trên CH Play
             </h2>

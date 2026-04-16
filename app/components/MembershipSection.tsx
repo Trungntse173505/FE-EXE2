@@ -152,8 +152,8 @@ export default function MembershipSection() {
               </p>
 
               {/* CTA Button */}
-              {plan.name === "Member VIP" && !isVIP ? (
-                <Link href="/membership/payment">
+              {plan.name === "Hội viên VIP" && !isVIP ? (
+                <Link href={`/payment/${VIP_COURSE_ID}`}>
                   <motion.span
                     className={`block w-full text-center py-3 rounded-full font-medium mb-8 transition-colors cursor-pointer ${plan.buttonStyle}`}
                     whileHover={{ scale: 1.02 }}

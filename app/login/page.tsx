@@ -89,20 +89,6 @@ export default function LoginPage() {
               Mỗi ngày một bước tiến gần hơn đến sức khỏe hoàn hảo.
             </p>
 
-            <div className="mt-12 grid grid-cols-3 gap-6">
-              <div className="bg-white/60 backdrop-blur rounded-xl p-4">
-                <p className="text-2xl font-bold text-green-600">200k+</p>
-                <p className="text-sm text-gray-600">Người dùng</p>
-              </div>
-              <div className="bg-white/60 backdrop-blur rounded-xl p-4">
-                <p className="text-2xl font-bold text-emerald-600">500+</p>
-                <p className="text-sm text-gray-600">Bài tập</p>
-              </div>
-              <div className="bg-white/60 backdrop-blur rounded-xl p-4">
-                <p className="text-2xl font-bold text-teal-600">4.9★</p>
-                <p className="text-sm text-gray-600">Đánh giá</p>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
