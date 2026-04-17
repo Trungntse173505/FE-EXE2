@@ -5,10 +5,11 @@ import { useState } from "react";
 import { useCourses } from "@/app/hooks/useCourses";
 import { useBoughtCourses, isCourseBought } from "@/app/hooks/useBoughtCourses";
 import { useAuthContext } from "@/app/context/AuthContext";
-import { PlayCircle, Clock, ArrowRight, ChevronLeft, ChevronRight, Check, Search, Filter, X } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Check, Search, X } from "lucide-react";
 import Link from "next/link";
 
 const ITEMS_PER_PAGE = 12;
+const HIDDEN_COURSE_ID = "49414f0c-ea91-4ded-bd2d-3536c2ea82e5";
 
 function formatPrice(price: number): string {
   if (price === 0) return "Miễn phí";
@@ -19,37 +20,24 @@ function formatPrice(price: number): string {
   }).format(price);
 }
 
-function formatLevel(level: string): string {
-  const levelMap: Record<string, string> = {
-    beginner: "Cơ bản",
-    intermediate: "Trung cấp",
-    advanced: "Nâng cao",
-    vip: "VIP",
-  };
-  return levelMap[level.toLowerCase()] || level;
-}
-
 export default function AllCoursesSection() {
   const { courses, isLoading, error } = useCourses();
   const { token, isAuthenticated } = useAuthContext();
   const { boughtCourses } = useBoughtCourses(token);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedLevel, setSelectedLevel] = useState<string>("");
   const [priceRange, setPriceRange] = useState<string>("");
 
-  // Filter courses
+  // Filter courses - chỉ hiện recover level, ẩn ID cụ thể
   const filteredCourses = courses.filter((course) => {
+    // Ẩn khóa học cụ thể và chỉ hiện level recover
+    if (course.id === HIDDEN_COURSE_ID) return false;
+    if (course.level?.toLowerCase() !== "recover") return false;
     if (!course.is_active) return false;
     
     // Search filter
     if (searchQuery && !course.title.toLowerCase().includes(searchQuery.toLowerCase()) && 
         !course.description.toLowerCase().includes(searchQuery.toLowerCase())) {
-      return false;
-    }
-    
-    // Level filter
-    if (selectedLevel && course.level.toLowerCase() !== selectedLevel.toLowerCase()) {
       return false;
     }
     
@@ -78,7 +66,6 @@ export default function AllCoursesSection() {
 
   const clearFilters = () => {
     setSearchQuery("");
-    setSelectedLevel("");
     setPriceRange("");
     setCurrentPage(1);
   };
@@ -116,7 +103,7 @@ export default function AllCoursesSection() {
             Tất cả khóa học
           </h1>
           <p className="text-lg text-gray-600">
-            Khám phá {filteredCourses.length} khóa học giãn cơ và phục hồi sức khỏe
+            Khám phá {filteredCourses.length} khóa học phục hồi chuyên sâu
           </p>
         </div>
 
@@ -138,22 +125,6 @@ export default function AllCoursesSection() {
               />
             </div>
 
-            {/* Level Filter */}
-            <select
-              value={selectedLevel}
-              onChange={(e) => {
-                setSelectedLevel(e.target.value);
-                setCurrentPage(1);
-              }}
-              className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none bg-white"
-            >
-              <option value="">Tất cả cấp độ</option>
-              <option value="beginner">Cơ bản</option>
-              <option value="intermediate">Trung cấp</option>
-              <option value="advanced">Nâng cao</option>
-              <option value="vip">VIP</option>
-            </select>
-
             {/* Price Filter */}
             <select
               value={priceRange}
@@ -164,14 +135,12 @@ export default function AllCoursesSection() {
               className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none bg-white"
             >
               <option value="">Tất cả giá</option>
-              <option value="free">Miễn phí</option>
-              <option value="paid">Có phí</option>
               <option value="under50k">Dưới 50.000đ</option>
               <option value="over50k">Trên 50.000đ</option>
             </select>
 
             {/* Clear Filters */}
-            {(searchQuery || selectedLevel || priceRange) && (
+            {(searchQuery || priceRange) && (
               <button
                 onClick={clearFilters}
                 className="px-4 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors flex items-center gap-2"
@@ -218,12 +187,6 @@ export default function AllCoursesSection() {
                       alt={course.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    {/* Level Badge */}
-                    <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 bg-white/90 backdrop-blur text-xs font-medium text-gray-700 rounded-full">
-                        {formatLevel(course.level)}
-                      </span>
-                    </div>
                     {/* Price Badge */}
                     <div className="absolute top-3 right-3">
                       <span
@@ -247,28 +210,20 @@ export default function AllCoursesSection() {
                       {course.description}
                     </p>
 
-                    {/* Stats */}
-                    <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
-                      <div className="flex items-center gap-1">
-                        <PlayCircle className="w-4 h-4" />
-                        <span>Video</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        <span>15-30 phút</span>
-                      </div>
-                    </div>
-
                     {/* CTA Button - Fixed at bottom */}
                     <div className="mt-auto">
                       {isCourseBought(course.id, boughtCourses) ? (
-                        <motion.button
-                          className="w-full h-11 bg-green-500 text-white rounded-xl font-medium text-sm flex items-center justify-center gap-2 cursor-default"
-                          whileTap={{ scale: 1 }}
-                        >
-                          <Check className="w-4 h-4" />
-                          Đã mua
-                        </motion.button>
+                        <Link href={`/courses/${course.id}`}>
+                          <motion.span
+                            className="w-full h-11 bg-green-500 text-white rounded-xl font-medium text-sm flex items-center justify-center gap-2 cursor-pointer group"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <Check className="w-4 h-4 group-hover:hidden" />
+                            <span className="group-hover:hidden">Đã mua</span>
+                            <span className="hidden group-hover:inline">Xem chi tiết</span>
+                          </motion.span>
+                        </Link>
                       ) : (
                         <Link href={`/payment/${course.id}`}>
                           <motion.span
