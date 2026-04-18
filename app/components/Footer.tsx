@@ -44,7 +44,9 @@ export default function Footer() {
               duy trì đều đặn và thấy kết quả.
             </p>
             <motion.a
-              href="#download"
+              href="https://play.google.com/store/apps/details?id=com.hiha.easystretch.v2"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
